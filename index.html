@@ -4,15 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wedding Invitation | 太一朗 & 愛実</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fff9fa;
-      --fg: #444;
-      --accent: #e3a7b9; /* 淡いピンク系 */
-      --muted: #a78a8a;
+      --bg: #fff7f9;
+      --fg: #333;
+      --accent: #d9a5b3;
+      --accent-dark: #b88793;
+      --muted: #777;
+      --white: #fff;
       --max: 980px;
     }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Noto Serif JP', serif;
@@ -21,249 +23,165 @@
       line-height: 1.8;
       overflow-x: hidden;
     }
-    img { max-width: 100%; display: block; }
-    h1 { font-family: 'Great Vibes', cursive; font-size: 3.4rem; margin: 0; color: #fff; }
-    h2 { font-size: 2rem; margin-bottom: 1rem; color: var(--accent); }
-    section { padding: 80px 20px; max-width: var(--max); margin: auto; text-align: center; }
-
-    /* Hero */
-    .hero {
-      height: 100vh;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      background: url('https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1600&q=80') center/cover;
-      color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    h1, h2, h3 { font-weight: 700; line-height: 1.3; }
+    h1 { font-size: 3.4rem; letter-spacing: .05em; }
+    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    p { margin: 0 0 1rem; }
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
       position: relative;
-      overflow: hidden;
+      z-index: 1;
     }
-    .hero p { margin: 8px 0; font-size: 1.2rem; }
+    section { padding: 80px 0; position: relative; }
 
     /* 花びら */
     .petal {
       position: fixed;
-      top: -10%;
-      background: radial-gradient(circle at 30% 30%, #fff0f5 0%, #f8cdda 60%, #fad0c4 100%);
-      border-radius: 50%;
+      top: -10vh;
+      background: radial-gradient(circle at 30% 30%, #fff0f6 0%, #fbb1d4 50%, #fddde6 100%);
+      border-radius: 50% 50% 50% 50%;
       opacity: 0;
+      animation: fall 15s linear infinite, sway 6s ease-in-out infinite alternate;
       pointer-events: none;
-      animation: fall 14s linear infinite, sway 6s ease-in-out infinite alternate;
-      z-index: 10;
     }
     @keyframes fall {
       0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-      100% { transform: translate3d(var(--x-move), 110vh, 0) rotate(360deg); opacity: 0; }
+      100% { transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(360deg); opacity: 0; }
     }
     @keyframes sway {
-      0% { transform: translateX(0px) rotate(0deg); }
-      100% { transform: translateX(50px) rotate(90deg); }
+      0% { transform: translateX(0px); }
+      100% { transform: translateX(40px); }
     }
 
-    /* Profile */
-    .profile-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      text-align: left;
+    header.hero {
+      text-align: center;
+      padding: 140px 20px 100px;
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
     }
-    .profile {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      min-height: 260px; /* 枠だけ確保 */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-size: 1rem;
-      color: var(--muted);
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
     }
-    .profile::before {
-      content: "ここに写真";
-      font-size: 1.2rem;
-      color: #bbb;
-      border: 2px dashed #e9bccc;
-      padding: 20px 40px;
-      border-radius: 10px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeScale 1.5s ease forwards;
+    }
+    @keyframes fadeScale {
+      0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 0.6rem;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
     }
 
-    /* Timeline */
+    /* セクションタイトル */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+      color: var(--accent-dark);
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--accent);
+      margin: 8px auto 0;
+    }
+
+    /* スケジュール */
     .timeline {
       display: grid;
-      gap: 24px;
-      margin-top: 30px;
-      text-align: left;
+      gap: 20px;
     }
     .timeline-item {
       background: #fff;
-      padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
     }
     .timeline-item h3 {
-      margin: 0 0 .4rem;
+      margin: 0 0 .3rem;
       font-size: 1.2rem;
-      color: var(--accent);
-    }
-    .timeline-item time {
-      display: block;
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+      color: var(--accent-dark);
     }
 
-    /* Map */
-    .map-wrap {
-      width: 100%;
-      height: 400px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      margin-top: 20px;
-    }
-    .map-wrap iframe { width: 100%; height: 100%; border: none; }
-
-    /* Notes */
+    /* ご案内 */
     .notes-list {
-      text-align: left;
       max-width: 720px;
-      margin: 30px auto 0;
-    }
-    .notes-list li {
-      margin-bottom: 0.8rem;
-      padding-left: 1em;
-      text-indent: -1em;
-    }
-
-    /* RSVP */
-    .rsvp-form {
-      max-width: 640px;
       margin: 0 auto;
-      background: #fff;
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       text-align: left;
     }
-    .rsvp-form label { font-weight: bold; margin-bottom: .5em; display: block; color: var(--accent); }
-    .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
-      width: 100%; padding: 10px; margin-bottom: 1em;
-      border: 1px solid #f1cbd4; border-radius: 6px; font-size: 1rem; background: #fff9fa;
-    }
-    .rsvp-form button {
-      display: inline-block; padding: 12px 24px;
-      background: var(--accent); color: #fff; border: none;
-      border-radius: 999px; cursor: pointer;
-      font-size: 1rem;
-    }
+    .notes-list li { margin: 0 0 .8rem; }
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 40px 20px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
-
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-
+  <!-- 花びら -->
   <div id="petals-root"></div>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <header class="hero">
-    <h1>Wedding Invitation</h1>
-    <p>2025.10.10 (FRI)</p>
-    <p>at MOKU -Farm pasta＆The Chiburger-</p>
+    <div class="hero-content">
+      <h1>Wedding Invitation</h1>
+      <p>2025.10.11 (SAT)</p>
+      <p>at MOKU -Farm pasta＆The Chiburger-</p>
+    </div>
   </header>
 
-  <!-- ご挨拶 -->
-  <section id="message" class="reveal">
-    <h2>ご挨拶</h2>
-    <p>
-      このたび私たちは結婚式を挙げる運びとなりました。<br>
-      日頃お世話になっている皆さまへ感謝の気持ちをお伝えしたく、<br>
-      ささやかながら披露宴を催します。
-    </p>
-    <p>2025年10月11日<br>太一朗 & 愛実</p>
-  </section>
-
-  <!-- プロフィール -->
-  <section id="profile" class="reveal">
-    <h2>新郎新婦プロフィール</h2>
-    <div class="profile-wrap">
-      <div class="profile">新郎エリア</div>
-      <div class="profile">新婦エリア</div>
-    </div>
-  </section>
-
   <!-- スケジュール -->
-  <section id="timeline" class="reveal">
-    <h2>当日のスケジュール</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h3>受付開始</h3>
-        <time>13:00</time>
-        <p>会場ロビーにて受付を行います。</p>
+  <section id="timeline">
+    <div class="container">
+      <h2 class="section-title">当日のスケジュール</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>13:00 会場</h3>
+          <p>会場ロビーにて受付開始</p>
+        </div>
+        <div class="timeline-item">
+          <h3>13:30 パーティー開始</h3>
+          <p>レストランにて披露宴スタート</p>
+        </div>
+        <div class="timeline-item">
+          <h3>16:00 終了</h3>
+          <p>お見送り・解散</p>
+        </div>
       </div>
-      <div class="timeline-item">
-        <h3>パーティー開始</h3>
-        <time>13:30</time>
-        <p>レストランにてお食事と歓談をお楽しみいただきます。</p>
-      </div>
-      <div class="timeline-item">
-        <h3>おひらき</h3>
-        <time>16:00</time>
-        <p>お見送りと記念のお写真撮影を予定しております。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- アクセス -->
-  <section id="access" class="reveal">
-    <h2>アクセス</h2>
-    <p>MOKU -Farm pasta＆The Chiburger-</p>
-    <p>〒260-0856 千葉県千葉市中央区亥鼻1-8-1 千葉大学亥鼻キャンパス内</p>
-    <div class="map-wrap">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.7803447445874!2d139.76493631525828!3d35.681240080194294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bf4c08c2cbf%3A0x9f31282870959198!2z5pel5pys44CB5p2x5Lqs6YO95riv5Yy65p2x5Lqs6YO95riv5Yy65pys5p2x!5e0!3m2!1sja!2sjp!4v1682849312345"
-        allowfullscreen=""
-        loading="lazy"></iframe>
     </div>
   </section>
 
   <!-- ご案内 -->
-  <section id="notes" class="reveal">
-    <h2>ご案内</h2>
-    <ul class="notes-list">
-      <li>お車でお越しの際は、近隣のコインパーキングをご利用ください。</li>
-      <li>アレルギーをお持ちの方は、フォームにてお知らせください。</li>
-      <li>当日は受付でお名前をお伝えください。</li>
-    </ul>
-  </section>
-
-  <!-- 出欠フォーム -->
-  <section id="rsvp" class="reveal">
-    <h2>出欠のご連絡</h2>
-    <form id="rsvpForm" class="rsvp-form">
-      <input type="hidden" id="GAS_ENDPOINT" value="YOUR_GAS_URL_HERE" />
-      <label for="name">お名前 *</label>
-      <input type="text" id="name" name="name" required placeholder="例）山田 太郎" />
-      <label for="email">メールアドレス *</label>
-      <input type="email" id="email" name="email" required placeholder="example@mail.com" />
-      <label for="attendance">ご出席について *</label>
-      <select id="attendance" name="attendance" required>
-        <option value="">選択してください</option>
-        <option value="出席">出席</option>
-        <option value="欠席">欠席</option>
-      </select>
-      <label for="message">メッセージ</label>
-      <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
-      <button type="submit" id="submitBtn">送信する</button>
-      <div class="status" id="status"></div>
-    </form>
+  <section id="notes">
+    <div class="container">
+      <h2 class="section-title">ご案内</h2>
+      <ul class="notes-list">
+        <li>お車でお越しの際は近隣のコインパーキングをご利用ください。</li>
+        <li>アレルギーのある方は事前にお知らせください。</li>
+        <li>当日は受付でお名前をお伝えください。</li>
+      </ul>
+    </div>
   </section>
 
   <footer>
@@ -271,56 +189,24 @@
   </footer>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    function createPetals(count = 60) {
+    /* 花びら生成 */
+    function createPetals(count = 80) {
       const root = document.getElementById('petals-root');
       const vw = window.innerWidth;
       for (let i = 0; i < count; i++) {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-        const size = Math.random() * 24 + 18;
-        petal.style.width = size + 'px';
-        petal.style.height = size * 0.8 + 'px';
-        petal.style.left = Math.random() * vw + 'px';
-        petal.style.animationDuration = (Math.random() * 10 + 12) + 's';
-        petal.style.animationDelay = (Math.random() * -20) + 's';
-        petal.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-        root.appendChild(petal);
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = Math.random() * 20 + 18; 
+        p.style.width = size + 'px';
+        p.style.height = size * 0.8 + 'px';
+        p.style.left = Math.random() * vw + 'px';
+        p.style.animationDuration = (Math.random() * 8 + 12) + 's';
+        p.style.animationDelay = (Math.random() * -20) + 's';
+        p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
+        root.appendChild(p);
       }
     }
     createPetals();
-
-    const form = document.getElementById('rsvpForm');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const status = document.getElementById('status');
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.textContent = '送信中...';
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        attendance: form.attendance.value,
-        message: form.message.value.trim(),
-        timestamp: new Date().toISOString()
-      };
-      try {
-        const endpoint = document.getElementById('GAS_ENDPOINT').value;
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        status.textContent = res.ok ? '送信しました。ありがとうございます！' : 'エラーが発生しました。';
-      } catch { status.textContent = '送信に失敗しました。'; }
-      finally { btn.disabled = false; btn.textContent = '送信する'; }
-    });
   </script>
 </body>
 </html>
