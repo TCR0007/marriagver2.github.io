@@ -41,6 +41,9 @@
     .petal {
       position: fixed;
       top: -10vh;
+      left: 0;
+      width: 20px;
+      height: 14px;
       background: radial-gradient(circle at 30% 30%, #fff0f6 0%, #fbb1d4 50%, #fddde6 100%);
       border-radius: 50% 50% 50% 50%;
       opacity: 0;
@@ -59,7 +62,7 @@
     header.hero {
       text-align: center;
       padding: 140px 20px 100px;
-      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       color: #fff;
       position: relative;
       overflow: hidden;
@@ -87,7 +90,6 @@
       font-size: 1.1rem;
     }
 
-    /* セクションタイトル */
     .section-title {
       text-align: center;
       font-size: 2rem;
@@ -104,7 +106,6 @@
       margin: 8px auto 0;
     }
 
-    /* スケジュール */
     .timeline {
       display: grid;
       gap: 20px;
@@ -122,7 +123,6 @@
       color: var(--accent-dark);
     }
 
-    /* ご案内 */
     .notes-list {
       max-width: 720px;
       margin: 0 auto;
@@ -140,73 +140,4 @@
 </head>
 <body>
   <!-- 花びら -->
-  <div id="petals-root"></div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Wedding Invitation</h1>
-      <p>2025.10.11 (SAT)</p>
-      <p>at MOKU -Farm pasta＆The Chiburger-</p>
-    </div>
-  </header>
-
-  <!-- スケジュール -->
-  <section id="timeline">
-    <div class="container">
-      <h2 class="section-title">当日のスケジュール</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>13:00 会場</h3>
-          <p>会場ロビーにて受付開始</p>
-        </div>
-        <div class="timeline-item">
-          <h3>13:30 パーティー開始</h3>
-          <p>レストランにて披露宴スタート</p>
-        </div>
-        <div class="timeline-item">
-          <h3>16:00 終了</h3>
-          <p>お見送り・解散</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ご案内 -->
-  <section id="notes">
-    <div class="container">
-      <h2 class="section-title">ご案内</h2>
-      <ul class="notes-list">
-        <li>お車でお越しの際は近隣のコインパーキングをご利用ください。</li>
-        <li>アレルギーのある方は事前にお知らせください。</li>
-        <li>当日は受付でお名前をお伝えください。</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Taichiro & Manami — Wedding Invitation
-  </footer>
-
-  <script>
-    /* 花びら生成 */
-    function createPetals(count = 80) {
-      const root = document.getElementById('petals-root');
-      const vw = window.innerWidth;
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'petal';
-        const size = Math.random() * 20 + 18; 
-        p.style.width = size + 'px';
-        p.style.height = size * 0.8 + 'px';
-        p.style.left = Math.random() * vw + 'px';
-        p.style.animationDuration = (Math.random() * 8 + 12) + 's';
-        p.style.animationDelay = (Math.random() * -20) + 's';
-        p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-        root.appendChild(p);
-      }
-    }
-    createPetals();
-  </script>
-</body>
-</html>
