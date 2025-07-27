@@ -50,10 +50,7 @@
       position: relative;
       z-index: 1;
     }
-    section {
-      padding: 80px 0;
-      position: relative;
-    }
+    section { padding: 80px 0; position: relative; }
     .section-title {
       margin-bottom: 2.5rem;
       position: relative;
@@ -68,7 +65,7 @@
       margin: 10px auto 0;
     }
 
-    /* --- 花びら（くずし型・しずく型） --- */
+    /* --- 花びら（くずし型） --- */
     .petal {
       position: fixed;
       top: -10vh;
@@ -82,15 +79,9 @@
       z-index: 0;
     }
     @keyframes fall {
-      0% {
-        transform: translate3d(0, -10vh, 0) rotate(0deg);
-        opacity: 0;
-      }
+      0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
       15% { opacity: 1; }
-      100% {
-        transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(720deg);
-        opacity: 0;
-      }
+      100% { transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(720deg); opacity: 0; }
     }
 
     /* Hero */
@@ -117,16 +108,8 @@
       padding: 0 1.5rem;
       animation: fadeUp 1.2s ease 0.2s both;
     }
-    .hero .date {
-      font-size: 1.2rem;
-      letter-spacing: 0.15em;
-      margin-top: 1rem;
-      opacity: 0.9;
-    }
-    .hero .place {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
+    .hero .date { font-size: 1.2rem; letter-spacing: 0.15em; margin-top: 1rem; opacity: 0.9; }
+    .hero .place { font-size: 1rem; opacity: 0.8; }
 
     /* Navigation */
     nav {
@@ -148,54 +131,101 @@
       justify-content: space-between;
       padding: 0 20px;
     }
-    .brand {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      color: var(--accent-dark);
-    }
-    .nav-links a {
-      margin-left: 16px;
-      font-size: 0.9rem;
-      color: var(--fg);
-      opacity: 0.8;
-    }
-    .nav-links a:hover {
-      opacity: 1;
-    }
+    .brand { font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: var(--accent-dark); }
+    .nav-links a { margin-left: 16px; font-size: 0.9rem; color: var(--fg); opacity: 0.8; }
+    .nav-links a:hover { opacity: 1; }
 
-    /* 各セクション */
-    .timeline-item, .rsvp-form, .profile {
+    /* Timeline */
+    .timeline { display: grid; gap: 24px; }
+    .timeline-item {
       background: #fffafc;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: left;
+    }
+    .timeline-item h3 { margin: 0 0 .4rem; font-size: 1.2rem; color: var(--accent-dark); }
+    .timeline-item time { color: var(--muted); font-size: 0.9rem; }
+
+    /* Profiles */
+    .profiles { display: grid; gap: 40px; }
+    .profile { display: grid; gap: 20px; align-items: center; background: #fffafc; padding: 20px; border-radius: 12px; }
+    .profile img {
+      width: 160px; height: 160px; object-fit: cover;
+      border-radius: 50%; margin: 0 auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
     }
 
-    /* ボタン */
+    /* Access */
+    .map-wrap { width: 100%; height: 420px; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+
+    /* Notes */
+    .notes-list { text-align: left; max-width: 720px; margin: 0 auto; }
+    .notes-list li { margin: 0 0 .8rem; }
+
+    /* RSVP */
+    .rsvp-form {
+      max-width: 720px; margin: 0 auto;
+      background: #fffafc; padding: 32px 24px;
+      border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      text-align: left;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    label { display: block; font-weight: 700; margin-bottom: .4rem; }
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      width: 100%; padding: 10px 12px; border: 1px solid #ddd;
+      border-radius: 8px; font-family: inherit; font-size: 1rem; background: #fafafa;
+      transition: border-color .2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none; border-color: var(--accent); background: #fff;
+    }
+    textarea { min-height: 120px; resize: vertical; }
     .btn {
-      background: var(--accent);
+      display: inline-block; background: var(--accent); color: #fff;
+      padding: 12px 24px; border-radius: 999px; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; transition: background .2s, transform .08s ease;
+    }
+    .btn:active { transform: scale(.99); }
+    .status { margin-top: 1rem; min-height: 1.5em; font-size: 0.95rem; }
+    .status.success { color: #1b9752; }
+    .status.error { color: #d93025; }
+
+    footer {
+      text-align: center; padding: 40px 20px;
+      color: var(--muted); font-size: 0.85rem;
     }
 
-    /* Reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity .9s ease, transform .9s cubic-bezier(.2,.85,.4,1);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(24px); }
+    .reveal.visible { opacity: 1; transform: translateY(0); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.85,.4,1); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (min-width: 768px) {
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+      .profiles { grid-template-columns: repeat(2, 1fr); }
+      .profile { grid-template-columns: 160px 1fr; text-align: left; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating petals -->
+  <!-- 花びら -->
   <div id="petals-root"></div>
 
-  <!-- ナビゲーションやその他コンテンツは前回のコードと同じ -->
-  <!-- （以下、heroからfooterまでは前回コードをそのまま使用） -->
+  <!-- ナビゲーション -->
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">T & A</div>
+      <div class="nav-links">
+        <a href="#message">ご挨拶</a>
+        <a href="#timeline">タイムライン</a>
+        <a href="#profiles">プロフィール</a>
+        <a href="#access">アクセス</a>
+        <a href="#notes">ご案内</a>
+        <a href="#rsvp">出欠連絡</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero -->
   <header class="hero" id="top">
@@ -206,43 +236,105 @@
     </div>
   </header>
 
-  <!-- 以下、メッセージ・タイムライン・プロフィール・アクセス・ご案内・RSVP・フッターは省略なしで続く -->
-  <!-- ここに前回の <section id="message"> ～ </footer> を貼り付けてください -->
+  <!-- ご挨拶 -->
+  <section id="message" class="message reveal">
+    <div class="container">
+      <h2 class="section-title">ご挨拶</h2>
+      <p>このたび私たちは結婚式を挙げる運びとなりました。<br>
+        日頃お世話になっている皆さまへ感謝の気持ちをお伝えしたく、ささやかながら披露宴を催します。<br>
+        ご多用中とは存じますが、ぜひご出席賜りますようお願い申し上げます。
+      </p>
+      <p class="date" style="margin-top:2rem;">2025年10月11日<br>太一朗 & 愛実</p>
+    </div>
+  </section>
 
-  <script>
-    // --- 花びら生成（くずし型） ---
-    function createPetals(count = 35) {
-      const root = document.getElementById('petals-root');
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'petal';
-        const size = Math.random() * 20 + 12;
-        p.style.width = size + 'px';
-        p.style.height = size * 1.2 + 'px';
-        p.style.left = Math.random() * vw + 'px';
-        const duration = Math.random() * 8 + 12;
-        const delay = Math.random() * -20;
-        p.style.animationDuration = duration + 's';
-        p.style.animationDelay = delay + 's';
-        p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-        root.appendChild(p);
-      }
-    }
-    createPetals(35);
+  <!-- スケジュール -->
+  <section id="timeline" class="timeline-section reveal">
+    <div class="container">
+      <h2 class="section-title">当日のスケジュール</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>受付開始</h3><time>13:00</time><p>会場ロビーにて受付を行います。</p>
+        </div>
+        <div class="timeline-item">
+          <h3>パーティー開始</h3><time>13:30</time><p>お食事と共に楽しい時間をお過ごしください。</p>
+        </div>
+        <div class="timeline-item">
+          <h3>催し物</h3><time>15:00</time><p>皆さまで楽しめる演出をご用意しています。</p>
+        </div>
+        <div class="timeline-item">
+          <h3>おひらき</h3><time>16:00</time><p>お見送り後終了となります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    // --- スクロール時のふわっと表示 ---
-    function onScrollReveal() {
-      const reveals = document.querySelectorAll('.reveal');
-      for (const el of reveals) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      }
-    }
-    window.addEventListener('scroll', onScrollReveal);
-    onScrollReveal();
-  </script>
-</body>
-</html>
+  <!-- プロフィール -->
+  <section id="profiles" class="profiles-section reveal">
+    <div class="container">
+      <h2 class="section-title">プロフィール</h2>
+      <div class="profiles">
+        <div class="profile">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80" alt="groom">
+          <div>
+            <h3>NAKAZAWA TAICHIRO</h3>
+            <p>1996年7月18日<br>埼玉県生まれ、埼玉県在住<br>趣味：くるま</p>
+          </div>
+        </div>
+        <div class="profile">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="bride">
+          <div>
+            <h3>INDO MANAMI</h3>
+            <p>1998年5月26日<br>千葉県生まれ、現在埼玉在住<br>好きな食べ物：オランダ屋の落花生パイ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <section id="access" class="access-section reveal">
+    <div class="container">
+      <h2 class="section-title">アクセス</h2>
+      <p>MOKU -Farm pasta＆The Chiburger-</p>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      <p style="margin-top:1rem;color:var(--muted); font-size:.95rem;">最寄駅：千葉駅</p>
+    </div>
+  </section>
+
+  <!-- ご案内 -->
+  <section id="notes" class="notes-section reveal">
+    <div class="container">
+      <h2 class="section-title">ご案内</h2>
+      <ul class="notes-list">
+        <li>お車でお越しの際は、大学病院のコインパーキングをご利用ください。</li>
+        <li>アレルギーをお持ちの方は、フォームにてお知らせください。</li>
+        <li>当日は受付でお名前をお伝えください。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section id="rsvp" class="rsvp-section reveal">
+    <div class="container">
+      <h2 class="section-title">出欠のご連絡</h2>
+      <form id="rsvpForm" class="rsvp-form" novalidate>
+        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/XXX/exec" />
+        <div class="form-group"><label for="name">お名前 *</label><input type="text" id="name" name="name" required /></div>
+        <div class="form-group"><label for="email">メールアドレス *</label><input type="email" id="email" name="email" required /></div>
+        <div class="form-group"><label for="attendance">ご出席 *</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">選択してください</option>
+            <option value="出席">出席</option>
+            <option value="欠席">欠席</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="guests">同伴者人数</label><input type="number" id="guests" name="guests" min="0" value="0" /></div>
+        <div class="form-group"><label for="allergy">アレルギー</label><textarea id="allergy" name="allergy"></textarea></div>
+        <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message"></textarea></div>
+        <button type="submit" class="btn" id="submitBtn">送信する</button>
+        <div class="status" id="status"></div>
+      </form>
+    </
