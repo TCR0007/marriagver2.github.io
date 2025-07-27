@@ -321,7 +321,7 @@
     <div class="container">
       <h2 class="section-title">出欠のご連絡</h2>
       <form id="rsvpForm" class="rsvp-form" novalidate>
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/XXX/exec" />
+        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbwKkHHF1-RIOV_3QpFrDto4Q8mlhG_HQQs4ygCpx5Q3hkBiX2jRpNhnuU9u5AORwwHC/exec" />
         <div class="form-group"><label for="name">お名前 *</label><input type="text" id="name" name="name" required /></div>
         <div class="form-group"><label for="email">メールアドレス *</label><input type="email" id="email" name="email" required /></div>
         <div class="form-group"><label for="attendance">ご出席 *</label>
@@ -337,4 +337,67 @@
         <button type="submit" class="btn" id="submitBtn">送信する</button>
         <div class="status" id="status"></div>
       </form>
-    </
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Taichiro & Manami Wedding</p>
+  </footer>
+
+  <script>
+    // 花びら生成
+    function createPetals(count = 35) {
+      const root = document.getElementById('petals-root');
+      const vw = window.innerWidth;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = Math.random() * 20 + 12;
+        p.style.width = size + 'px';
+        p.style.height = size * 1.2 + 'px';
+        p.style.left = Math.random() * vw + 'px';
+        p.style.animationDuration = (Math.random() * 8 + 12) + 's';
+        p.style.animationDelay = (Math.random() * -20) + 's';
+        p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
+        root.appendChild(p);
+      }
+    }
+    createPetals(35);
+
+    // スクロール時アニメーション
+    function onScrollReveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScrollReveal);
+    onScrollReveal();
+
+    // フォーム送信
+    document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const statusEl = document.getElementById('status');
+      statusEl.textContent = '送信中...';
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch(document.getElementById('GAS_ENDPOINT').value, {
+          method: 'POST',
+          body: data
+        });
+        if (res.ok) {
+          statusEl.textContent = '送信が完了しました。ありがとうございます！';
+          statusEl.className = 'status success';
+          form.reset();
+        } else throw new Error();
+      } catch (err) {
+        statusEl.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+        statusEl.className = 'status error';
+      }
+    });
+  </script>
+</body>
+</html>
