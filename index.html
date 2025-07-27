@@ -15,7 +15,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
 
   <style>
-    /* 省略なしのCSS */
     :root { --bg: #fce8ed; --fg: #4a3c3c; --accent: #d6a5b2; --accent-dark: #b88091; --muted: #7a656a; --white: #fff; --max: 980px; }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -73,10 +72,8 @@
   </style>
 </head>
 <body>
-  <!-- Floating petals root -->
   <div id="petals-root"></div>
 
-  <!-- Nav -->
   <nav>
     <div class="nav-inner">
       <div class="brand">T & H</div>
@@ -91,7 +88,6 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <header class="hero" id="top">
     <div class="hero-content">
       <h1>Wedding Invitation</h1>
@@ -100,52 +96,31 @@
     </div>
   </header>
 
-  <!-- Message -->
+  <!-- ご挨拶 -->
   <section id="message" class="message reveal">
     <div class="container">
       <h2 class="section-title">ご挨拶</h2>
-      <p>
-        このたび私たちは結婚式を挙げる運びとなりました。<br>
+      <p>このたび私たちは結婚式を挙げる運びとなりました。<br>
         日頃お世話になっている皆さまへ感謝の気持ちをお伝えしたく、ささやかながら披露宴を催します。<br>
-        ご多用中とは存じますが、ぜひご出席賜りますようお願い申し上げます。
-      </p>
-      <p class="date" style="margin-top:2rem;">
-        2025年10月11日<br>
-        太一朗 & 愛実
-      </p>
+        ご多用中とは存じますが、ぜひご出席賜りますようお願い申し上げます。</p>
+      <p class="date" style="margin-top:2rem;">2025年10月11日<br>太一朗 & 愛実</p>
     </div>
   </section>
 
-  <!-- Timeline -->
+  <!-- タイムライン -->
   <section id="timeline" class="timeline-section reveal">
     <div class="container">
       <h2 class="section-title">当日のスケジュール</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <h3>受付開始</h3>
-          <time>13:00</time>
-          <p>会場ロビーにて受付を行います。</p>
-        </div>
-        <div class="timeline-item">
-          <h3>パーティー開始</h3>
-          <time>13:30</time>
-          <p>ゲストの皆さまと食事を楽しみます。</p>
-        </div>
-        <div class="timeline-item">
-          <h3>催し物</h3>
-          <time>15:00</time>
-          <p>お楽しみの演出をご用意しています。</p>
-        </div>
-        <div class="timeline-item">
-          <h3>おひらき</h3>
-          <time>16:00</time>
-          <p>お見送りをして終了となります。</p>
-        </div>
+        <div class="timeline-item"><h3>受付開始</h3><time>13:00</time><p>会場ロビーにて受付を行います。</p></div>
+        <div class="timeline-item"><h3>パーティー開始</h3><time>13:30</time><p>ゲストの皆さまと食事を楽しみます。</p></div>
+        <div class="timeline-item"><h3>催し物</h3><time>15:00</time><p>お楽しみの演出をご用意しています。</p></div>
+        <div class="timeline-item"><h3>おひらき</h3><time>16:00</time><p>お見送りをして終了となります。</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Profiles -->
+  <!-- プロフィール -->
   <section id="profiles" class="profiles-section reveal">
     <div class="container">
       <h2 class="section-title">プロフィール</h2>
@@ -154,56 +129,34 @@
           <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80" alt="groom">
           <div>
             <h3>NAKAZAWA TAICHIRO</h3>
-            <p>
-              1996年7月18日<br>
-              埼玉県生まれ、埼玉県在住<br>
-              趣味：くるま<br>
-              当日は皆様のお越しを楽しみにお待ちしております。
-            </p>
+            <p>1996年7月18日<br>埼玉県生まれ、埼玉県在住<br>趣味：くるま<br>当日は皆様のお越しを楽しみにお待ちしております。</p>
           </div>
         </div>
         <div class="profile">
           <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="bride">
           <div>
             <h3>INDO MANAMI</h3>
-            <p>
-              1998年5月26日<br>
-              千葉県生まれ。<br>
-              好きな食べ物：落花生パイ。<br>
-              皆様のお越しを楽しみにお待ちしております。
-            </p>
+            <p>1998年5月26日<br>千葉県生まれ。<br>好きな食べ物：落花生パイ。<br>皆様のお越しを楽しみにお待ちしております。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Access -->
-<section id="access" class="access-section reveal">
-  <div class="container">
-    <h2 class="section-title">アクセス</h2>
-    <p>MOKU -Farm pasta＆The Chiburger-</p>
-    
-    <!-- Google Map -->
-    <div class="map-wrap">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.9933979041234!2d140.13104767451685!3d35.60322943425708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60229bbb7e1d0a67%3A0x33d64452a913fee8!2sMOKU%20-Farm%20pasta%26The%20Chiburger-!5e0!3m2!1sja!2sjp!4v1753621100088!5m2!1sja!2sjp" 
-        width="600" 
-        height="450" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+  <!-- アクセス -->
+  <section id="access" class="access-section reveal">
+    <div class="container">
+      <h2 class="section-title">アクセス</h2>
+      <p>MOKU -Farm pasta＆The Chiburger-</p>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3243.9933979041234!2d140.13104767451685!3d35.60322943425708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60229bbb7e1d0a67%3A0x33d64452a913fee8!2sMOKU%20-Farm%20pasta%26The%20Chiburger-!5e0!3m2!1sja!2sjp!4v1753621100088!5m2!1sja!2sjp" 
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p style="margin-top:1rem;color:var(--muted); font-size:.95rem;">最寄駅：千葉駅</p>
     </div>
+  </section>
 
-    <p style="margin-top:1rem; color:var(--muted); font-size:.95rem;">
-      最寄駅：千葉駅
-    </p>
-  </div>
-</section>
-
-  <!-- Notes -->
+  <!-- ご案内 -->
   <section id="notes" class="notes-section reveal">
     <div class="container">
       <h2 class="section-title">ご案内</h2>
@@ -215,129 +168,82 @@
     </div>
   </section>
 
-  <!-- RSVP -->
+  <!-- RSVPフォーム -->
   <section id="rsvp" class="rsvp-section reveal">
     <div class="container">
       <h2 class="section-title">出欠のご連絡</h2>
-
       <form id="rsvpForm" class="rsvp-form" novalidate>
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbygOK7reTeM_RP9fAZJ7dPIXw4g6CgX7JqY_cpw9UUFEXCuCs3G_f_7VuQt6xWUEXtw/exec" />
-
-        <div class="form-group">
-          <label for="name">お名前 <span style="color:#d93025;">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="例）山田 太郎" />
-        </div>
-
-        <div class="form-group">
-          <label for="email">メールアドレス <span style="color:#d93025;">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@mail.com" />
-        </div>
-
-        <div class="form-group">
-          <label for="attendance">ご出席について <span style="color:#d93025;">*</span></label>
+        <input type="hidden" id="GAS_ENDPOINT" value="YOUR_GAS_SCRIPT_URL" />
+        <div class="form-group"><label for="name">お名前 *</label><input type="text" id="name" name="name" required /></div>
+        <div class="form-group"><label for="email">メールアドレス *</label><input type="email" id="email" name="email" required /></div>
+        <div class="form-group"><label for="attendance">ご出席について *</label>
           <select id="attendance" name="attendance" required>
             <option value="">選択してください</option>
             <option value="出席">出席</option>
             <option value="欠席">欠席</option>
           </select>
         </div>
-
-        <div class="form-group">
-          <label for="guests">同伴者の人数（いない場合は0）</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" value="0" />
-        </div>
-
-        <div class="form-group">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
-        </div>
-
+        <div class="form-group"><label for="guests">同伴者人数</label><input type="number" id="guests" name="guests" min="0" max="10" value="0" /></div>
+        <div class="form-group"><label for="message">メッセージ</label><textarea id="message" name="message"></textarea></div>
         <button type="submit" class="btn" id="submitBtn">送信する</button>
         <div class="status" id="formStatus"></div>
       </form>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 TAICHIRO & MANAMI Wedding</p>
-  </footer>
+  <footer><p>&copy; 2025 TAICHIRO & MANAMI Wedding</p></footer>
 
   <script>
-    // スクロール演出
-    const revealObserver = new IntersectionObserver((entries) => {
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 花びらアニメーション
+    // Petals animation
     const petalRoot = document.getElementById('petals-root');
-    const colors = ['#f7cfe0', '#fddde6', '#f9d6e0', '#fbe6f1', '#ffeaf4'];
+    const colors = ['#f9c2d2', '#f6bcd0', '#fdd6e2'];
     function createPetal() {
       const petal = document.createElement('div');
       petal.className = 'petal';
-      const size = Math.random() * 14 + 10;
-      petal.style.width = `${size}px`;
-      petal.style.height = `${size * 0.6}px`;
+      const size = Math.random() * 10 + 8;
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
       petal.style.left = Math.random() * 100 + 'vw';
       petal.style.background = colors[Math.floor(Math.random() * colors.length)];
-      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
+      petal.style.animationDuration = (Math.random() * 10 + 8) + 's';
       petal.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-      petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      petal.style.animationDelay = Math.random() * 3 + 's';
       petalRoot.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
+      setTimeout(() => petal.remove(), 18000);
     }
-    setInterval(createPetal, 300);
+    setInterval(createPetal, 600);
 
-    // RSVP送信
+    // RSVP form
     const rsvpForm = document.getElementById('rsvpForm');
-    const formStatus = document.getElementById('formStatus');
     const submitBtn = document.getElementById('submitBtn');
-    const GAS_URL = document.getElementById('GAS_ENDPOINT').value;
+    const formStatus = document.getElementById('formStatus');
+    const endpoint = document.getElementById('GAS_ENDPOINT').value;
 
     rsvpForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      formStatus.textContent = '';
-      formStatus.className = 'status';
-      if (!rsvpForm.checkValidity()) {
-        rsvpForm.reportValidity();
-        return;
-      }
-
       submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
+      formStatus.textContent = "送信中…";
 
-      const data = Object.fromEntries(new FormData(rsvpForm).entries());
-
+      const data = new FormData(rsvpForm);
       try {
-        const res = await fetch(GAS_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(data)
-        });
-
-        let json = {};
-        try { json = await res.json(); } catch(_) {}
-
+        const res = await fetch(endpoint, { method: "POST", body: data });
         if (res.ok) {
-          formStatus.textContent = json.message || '送信が完了しました。ありがとうございます！';
-          formStatus.classList.add('success');
+          formStatus.textContent = "送信が完了しました。ありがとうございます！";
+          formStatus.className = "status success";
           rsvpForm.reset();
-        } else {
-          throw new Error(json.message || '送信に失敗しました。');
-        }
+        } else throw new Error();
       } catch (err) {
-        console.error(err);
-        formStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-        formStatus.classList.add('error');
+        formStatus.textContent = "エラーが発生しました。再度お試しください。";
+        formStatus.className = "status error";
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
       }
     });
   </script>
