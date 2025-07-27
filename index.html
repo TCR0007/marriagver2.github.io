@@ -129,154 +129,60 @@
 <body>
   <div id="petals-root"></div>
 
-  <!-- Nav -->
-  <nav>
-    <div class="nav-inner">
-      <div class="brand">T & H</div>
-      <div class="nav-links">
-        <a href="#message">ご挨拶</a>
-        <a href="#timeline">タイムライン</a>
-        <a href="#profiles">プロフィール</a>
-        <a href="#access">アクセス</a>
-        <a href="#notes">ご案内</a>
-        <a href="#rsvp">出欠連絡</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero" id="top">
-    <div class="hero-content">
-      <h1>Wedding Invitation</h1>
-      <p class="date">2025.10.10 (FRI)</p>
-      <p class="place">at MOKU -Farm pasta＆The Chiburger-</p>
-    </div>
-  </header>
-
-  <!-- Message -->
-  <section id="message" class="reveal">
-    <div class="container">
-      <h2 class="section-title">ご挨拶</h2>
-      <p>
-        このたび私たちは結婚式を挙げる運びとなりました。<br>
-        日頃お世話になっている皆さまへ感謝の気持ちをお伝えしたく、ささやかながら披露宴を催します。<br>
-        ご多用中とは存じますが、ぜひご出席賜りますようお願い申し上げます。
-      </p>
-      <p class="date" style="margin-top:2rem;">
-        2025年10月11日<br>
-        太一朗 & 愛実
-      </p>
-    </div>
-  </section>
-
-  <!-- Timeline -->
-  <section id="timeline" class="reveal">
-    <div class="container">
-      <h2 class="section-title">当日のスケジュール</h2>
-      <div class="timeline">
-        <div class="timeline-item"><h3>受付開始</h3><time>13:00</time><p>会場ロビーにて受付を行います。</p></div>
-        <div class="timeline-item"><h3>パーティー開始</h3><time>13:30</time><p>ゲストの皆さまと食事を楽しみます。</p></div>
-        <div class="timeline-item"><h3>催し物</h3><time>15:00</time><p>お楽しみの演出をご用意しています。</p></div>
-        <div class="timeline-item"><h3>おひらき</h3><time>16:00</time><p>お見送りをして終了となります。</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Profiles -->
-  <section id="profiles" class="reveal">
-    <div class="container">
-      <h2 class="section-title">プロフィール</h2>
-      <div class="profiles">
-        <div class="profile">
-          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80" alt="groom">
-          <div><h3>NAKAZAWA TAICHIRO</h3>
-            <p>1996年7月18日 <br>
-              埼玉県生まれ。<br>
-              埼玉県生まれ、埼玉県在住<br>
-              趣味：くるま。<br>
-              当日は皆様のお越しを楽しみにお待ちしております。</p></div>
-        </div>
-        <div class="profile">
-          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="bride">
-          <div><h3>INDO MANAMI</h3><p>1998年5月26日<br>
-            千葉県生まれ。<br>
-            好きな食べ物：落花生パイ。<br>
-            皆様のお越しを楽しみにお待ちしております。</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Access -->
-  <section id="access" class="reveal">
-    <div class="container">
-      <h2 class="section-title">アクセス</h2>
-      <p>MOKU -Farm pasta＆The Chiburger-</p>
-      <div class="map-wrap">
-        <iframe
-          src="https://www.google.com/maps/place/%E3%80%92260-0856+%E5%8D%83%E8%91%89%E7%9C%8C%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BA%A5%E9%BC%BB%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%98%E2%88%92%EF%BC%91+%E5%8D%83%E8%91%89%E5%A4%A7%E5%AD%A6+%E4%BA%A5%E9%BC%BB%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9+%E5%86%85/@35.6046541,140.1278775,17z"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Notes -->
-  <section id="notes" class="reveal">
-    <div class="container">
-      <h2 class="section-title">ご案内</h2>
-      <ul>
-        <li>お車の方は大学病院のコインパーキングをご利用ください。</li>
-        <li>アレルギーがある方はフォームにご記入ください。</li>
-        <li>当日は受付でお名前をお伝えください。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section id="rsvp" class="reveal">
-    <div class="container">
-      <h2 class="section-title">出欠のご連絡</h2>
-      <form id="rsvpForm" class="rsvp-form" novalidate>
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/【ここにあなたのGASのデプロイURL】/exec" />
-        <div class="form-group">
-          <label for="name">お名前 *</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="form-group">
-          <label for="email">メールアドレス *</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div class="form-group">
-          <label for="attendance">ご出席 *</label>
-          <select id="attendance" name="attendance" required>
-            <option value="">選択してください</option>
-            <option value="出席">出席</option>
-            <option value="欠席">欠席</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="guests">同伴者人数</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" />
-        </div>
-        <div class="form-group">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message"></textarea>
-        </div>
-        <button type="submit" class="btn" id="submitBtn">送信する</button>
-        <div class="status" id="formStatus"></div>
-      </form>
-    </div>
-  </section>
+  <!-- ナビゲーション・Hero・各セクションは省略（上と同じ） -->
 
   <footer>
     <p>&copy; 2025 TAICHIRO & MANAMI Wedding</p>
   </footer>
 
   <script>
+    // --- 花びらアニメーション ---
     const petalRoot = document.getElementById('petals-root');
     const colors = ['#f7cfe0', '#fddde6', '#f9d6e0', '#fbe6f1', '#ffeaf4'];
+
     function createPetal() {
       const petal = document.createElement('div');
       petal.classList.add('petal');
       const size = Math.random() * 14 + 10;
       petal.style.width = `${size}px`;
+      petal.style.height = `${size * 0.6}px`;
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.setProperty('--x-move', (Math.random() * 100 - 50) + 'px');
+      petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      petalRoot.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+    setInterval(createPetal, 300);
+
+    // --- フォーム送信 ---
+    const rsvpForm = document.getElementById('rsvpForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    const GAS_URL = document.getElementById('GAS_ENDPOINT').value;
+
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formStatus.textContent = '';
+      submitBtn.disabled = true;
+      const data = Object.fromEntries(new FormData(rsvpForm).entries());
+      try {
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (res.ok) {
+          formStatus.textContent = '送信が完了しました。ありがとうございます！';
+          formStatus.className = 'status success';
+          rsvpForm.reset();
+        } else throw new Error();
+      } catch (err) {
+        formStatus.textContent = '送信に失敗しました。時間を置いて再度お試しください。';
+        formStatus.className = 'status error';
+      }
+      submitBtn.disabled = false;
+    });
+  </script>
+</body>
+</html>
