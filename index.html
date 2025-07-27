@@ -39,7 +39,7 @@
     a { color: var(--accent-dark); text-decoration: none; }
     h1, h2, h3 { font-weight: 700; line-height: 1.3; }
     h1 { font-family: 'Great Vibes', cursive; font-size: 3.6rem; letter-spacing: .04em; }
-    h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+    h2 { font-size: 2.2rem; margin-bottom: 1rem; color: var(--accent-dark); }
     p { margin: 0 0 1rem; }
 
     /* Global layout */
@@ -56,73 +56,45 @@
       position: relative;
     }
     .section-title {
-      margin-bottom: 2.5rem;
-      position: relative;
+      margin-bottom: 2rem;
       display: inline-block;
+      position: relative;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--accent);
     }
-    .section-title::after {
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 140px 20px 80px;
+      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      position: relative;
+    }
+    .hero::after {
       content: "";
-      display: block;
-      width: 60%;
-      height: 2px;
-      background: var(--accent);
-      margin: 10px auto 0;
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeScale 1.5s ease forwards;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin: 0.2rem 0;
+    }
+    @keyframes fadeScale {
+      0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* .petal {
-  position: fixed;
-  top: -10vh;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at 30% 30%, #fff1f7 0%, #ffc0cb 60%, #ffdde2 100%);
-  border-radius: 50% 50% 50% 50%;
-  opacity: 0;
-  animation: fall 15s linear infinite, sway 6s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-@keyframes fall {
-  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-  100% { transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(360deg); opacity: 0; }
-}
-@keyframes sway {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(40px); }
-}
-
-/* Heroのテキスト登場アニメーション */
-.hero-content {
-  animation: fadeScale 1.8s ease forwards;
-}
-@keyframes fadeScale {
-  0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* セクションタイトルのゴールドラインアニメ */
-.section-title {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  background: linear-gradient(90deg, #d4af37 0%, #fff3a0 50%, #d4af37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
-}
-@keyframes shimmer {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
-}
-
-/* revealアニメーションをより柔らかく */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
     /* Navigation */
     nav {
       position: fixed;
@@ -161,6 +133,7 @@
     /* Message */
     .message p {
       font-size: 1.05rem;
+      text-align: center;
     }
 
     /* Timeline */
@@ -317,10 +290,6 @@
       transform: translateY(0);
       transition: opacity .9s ease, transform .9s cubic-bezier(.2,.85,.4,1);
     }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
 
     /* Responsive */
     @media (min-width: 768px) {
@@ -339,13 +308,10 @@
 </head>
 <body>
 
-  <!-- Floating petals (generated via JS too, but a few static just in case) -->
-  <div id="petals-root"></div>
-
   <!-- Nav -->
   <nav>
     <div class="nav-inner">
-      <div class="brand">T & H</div>
+      <div class="brand">T & A</div>
       <div class="nav-links">
         <a href="#message">ご挨拶</a>
         <a href="#timeline">タイムライン</a>
@@ -359,16 +325,10 @@
 
   <!-- Hero -->
   <header class="hero" id="top">
-    <svg class="flower flower--tl" width="240" height="240" viewBox="0 0 200 200" fill="none">
-      <path d="M100 10 C140 40 190 60 180 110 C170 160 130 190 100 190 C70 190 30 160 20 110 C10 60 60 40 100 10Z" fill="#fff"/>
-    </svg>
-    <svg class="flower flower--br" width="240" height="240" viewBox="0 0 200 200" fill="none">
-      <path d="M100 10 C140 40 190 60 180 110 C170 160 130 190 100 190 C70 190 30 160 20 110 C10 60 60 40 100 10Z" fill="#fff"/>
-    </svg>
     <div class="hero-content">
       <h1>Wedding Invitation</h1>
-      <p class="date">2025.10.10 (FRI)</p>
-      <p class="place">at MOKU -Farm pasta＆The Chiburger-/p>
+      <p class="date">2025.10.11 (SAT)</p>
+      <p class="place">at MOKU -Farm pasta＆The Chiburger-</p>
     </div>
   </header>
 
@@ -399,14 +359,14 @@
           <p>会場ロビーにて受付を行います。</p>
         </div>
         <div class="timeline-item">
-          <h3>Party</h3>
+          <h3>パーティ</h3>
           <time>13:30</time>
           <p>レストランにて行います。</p>
         </div>
         <div class="timeline-item">
-          <h3></h3>
-          <time>17:30</time>
-          <p>会場にてゲストの皆さまと楽しい時間を過ごします。</p>
+          <h3>歓談・お食事</h3>
+          <time>13:30-16:00</time>
+          <p>ゲストの皆さまと楽しい時間を過ごします。</p>
         </div>
         <div class="timeline-item">
           <h3>おひらき</h3>
@@ -426,17 +386,14 @@
           <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80" alt="groom">
           <div>
             <h3>NAKAZAWA TAICHIRO</h3>
-            <p>1996年7月18日<br>埼玉県生まれ、埼玉県在住<br>ずっと埼玉です<br>趣味：くるま<br>当日は皆様のお越しを楽しみにしております。</p>
+            <p>1996年7月18日<br>埼玉県生まれ、埼玉県在住<br>趣味：くるま<br>当日は皆様のお越しを楽しみにしております。</p>
           </div>
         </div>
         <div class="profile">
           <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="bride">
           <div>
             <h3>INDO MANAMI</h3>
-            <p>1998年5月26日<br>千葉県生まれ。
-              <br>埼玉県と千葉県を行ったり来たりして現在埼玉に在住。
-              <br>好きな食べ物：オランダ屋の落花生パイ
-              <br>皆様のお越しを楽しみにお待ちしております。</p>
+            <p>1998年5月26日<br>千葉県生まれ、埼玉県在住<br>好きな食べ物：オランダ屋の落花生パイ<br>皆様のお越しを楽しみにお待ちしております。</p>
           </div>
         </div>
       </div>
@@ -450,7 +407,6 @@
       <p>MOKU -Farm pasta＆The Chiburger-
         <br>〒260-0856 千葉県千葉市中央区亥鼻1-8-1 千葉大学亥鼻キャンパス内</p>
       <div class="map-wrap">
-        <!-- Google Maps埋め込み（必要に応じて差し替え） -->
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.7803447445874!2d139.76493631525828!3d35.681240080194294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bf4c08c2cbf%3A0x9f31282870959198!2z5pel5pys44CB5p2x5Lqs6YO95riv5Yy65p2x5Lqs6YO95riv5Yy65pys5p2x!5e0!3m2!1sja!2sjp!4v1682849312345"
           allowfullscreen=""
@@ -479,9 +435,7 @@
   <section id="rsvp" class="rsvp-section reveal">
     <div class="container">
       <h2 class="section-title">出欠のご連絡</h2>
-
       <form id="rsvpForm" class="rsvp-form" novalidate>
-        <!-- ★★★ ここをあなたのGASのURLに差し替えてください ★★★ -->
         <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbxQBwxmdbSaJ0w3kEFrWDFAlqpKuJ6YHHpHqVWR7ECiJnqW2INOVrA0P1lDM9cf7PnZ/exec" />
 
         <div class="form-group">
@@ -496,145 +450,4 @@
 
         <div class="form-group">
           <label for="tel">電話番号</label>
-          <input type="tel" id="tel" name="tel" placeholder="090-1234-5678" />
-        </div>
-
-        <div class="form-group">
-          <label for="attendance">ご出席について <span style="color:#d93025;">*</span></label>
-          <select id="attendance" name="attendance" required>
-            <option value="">選択してください</option>
-            <option value="出席">出席</option>
-            <option value="欠席">欠席</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="guests">同伴者の人数（いない場合は0）</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" value="0" />
-        </div>
-
-        <div class="form-group">
-          <label for="allergy">アレルギー</label>
-          <textarea id="allergy" name="allergy" placeholder="例）甲殻類NG / 乳製品NG など"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
-        </div>
-
-        <button type="submit" class="btn" id="submitBtn">送信する</button>
-        <div class="status" id="status"></div>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      © 2025 Taichiro & Manami — Wedding Invitation
-    </div>
-  </footer>
-
-  <script>
-    /**
-     * 1) スクロール演出
-     */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /**
-     * 2) 花びらアニメーション生成
-     */
-    function createPetals(count = 40) {
-  const root = document.getElementById('petals-root');
-  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'petal';
-    const size = Math.random() * 15 + 10;  // サイズ大きめ
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = Math.random() * vw + 'px';
-    const duration = Math.random() * 10 + 12;
-    const delay = Math.random() * -20;
-    p.style.animationDuration = duration + 's';
-    p.style.animationDelay = delay + 's';
-    p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-    root.appendChild(p);
-  }
-}
-createPetals(50);
-
-    /**
-     * 3) RSVP (GAS連携)
-     *    - GAS側はPOSTでJSONを受け取り、CORS許可＆JSON応答を返すよう実装してください
-     *    - 例: ContentService.createTextOutput(JSON.stringify({status:"ok"})).setMimeType(ContentService.MimeType.JSON)
-     *         .setHeader("Access-Control-Allow-Origin", "*")
-     */
-    const form = document.getElementById('rsvpForm');
-    const statusEl = document.getElementById('status');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusEl.textContent = '';
-      statusEl.className = 'status';
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
-
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        tel: form.tel.value.trim(),
-        attendance: form.attendance.value,
-        guests: form.guests.value,
-        allergy: form.allergy.value.trim(),
-        message: form.message.value.trim(),
-        timestamp: new Date().toISOString()
-      };
-
-      const endpoint = document.getElementById('GAS_ENDPOINT').value;
-
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          mode: 'cors',
-        });
-
-        // GASがJSON返す前提
-        const json = await res.json().catch(() => ({}));
-
-        if (res.ok) {
-          statusEl.textContent = json.message || '送信しました。ご回答ありがとうございます。';
-          statusEl.classList.add('success');
-          form.reset();
-        } else {
-          throw new Error(json.message || '送信に失敗しました。お手数ですが再度お試しください。');
-        }
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '送信に失敗しました。通信環境をご確認のうえ、時間をおいて再度お試しください。';
-        statusEl.classList.add('error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
-      }
-    });
-  </script>
-</body>
-</html>
+          <input type="
