@@ -69,17 +69,17 @@
       margin: 10px auto 0;
     }
 
-    /* Floating petals animation */
+    /* --- 花びらのゴージャスアニメーション --- */
     .petal {
       position: fixed;
       top: -10vh;
-      width: 20px;
-      height: 20px;
       pointer-events: none;
-      background: rgba(255, 192, 203, 0.8);
-      border-radius: 100% 0 100% 100%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 240, 246, 0.95), rgba(251, 177, 212, 0.8));
+      border-radius: 50% 50% 50% 50%;
       transform: rotate(45deg);
       animation: fall linear infinite;
+      box-shadow: 0 0 8px rgba(255, 192, 203, 0.3);
+      opacity: 0;
       z-index: 0;
     }
     @keyframes fall {
@@ -354,7 +354,7 @@
 </head>
 <body>
 
-  <!-- Floating petals (generated via JS too, but a few static just in case) -->
+  <!-- Floating petals -->
   <div id="petals-root"></div>
 
   <!-- Nav -->
@@ -469,16 +469,10 @@
       <h2 class="section-title">アクセス</h2>
       <p>MOKU -Farm pasta＆The Chiburger- </p>
       <div class="map-wrap">
-        <!-- Google Maps埋め込み（必要に応じて差し替え） -->
         <iframe
-          src="https://www.google.com/maps/place/%E3%80%92260-0856+%E5%8D%83%E8%91%89%E7%9C%8C%E5%8D%83%E8%91%89%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E4%BA%A5%E9%BC%BB%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%98%E2%88%92%EF%BC%91+%E5%8D%83%E8%91%89%E5%A4%A7%E5%AD%A6+%E4%BA%A5%E9%BC%BB%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9+%E5%86%85/@35.6046541,140.1278775,17z/data=!3m1!4b1!4m5!3m4!1s0x60229b31949975e3:0x55d0f7b921e00b52!8m2!3d35.6046541!4d140.1304524?entry=ttu&g_ep=EgoyMDI1MDcyMy4wIKXMDSoASAFQAw%3D%3D"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+          src="https://www.google.com/maps/place/%E3%80%92260-0856+%E5%8D%83%E8%91%89%E7%9C%8C%E5%8D%83%E8%91%89%E5%B8%82%E5%8D%83%E8%91%89%E5%8C%BA%E6%96%B0%E7%94%B0%E7%94%BA1%EF%BC%97%EF%BC%92-2+MOKU+-Farm+pasta%EF%BC%86The+Chiburger-/@35.5998659,140.1237066,17z/data=!3m1!4b1!4m6!3m5!1s0x602282b2c4ecf2b7:0xcbd59b002a6f9c2e!8m2!3d35.5998659!4d140.1262815!16s%2Fg%2F11h_n1nny1?entry=ttu"
+          allowfullscreen="" loading="lazy"></iframe>
       </div>
-      <p style="margin-top:1rem;color:var(--muted); font-size:.95rem;">
-        最寄駅：千葉駅
-      </p>
     </div>
   </section>
 
@@ -487,9 +481,9 @@
     <div class="container">
       <h2 class="section-title">ご案内</h2>
       <ul class="notes-list">
-        <li>お車でお越しの際は、大学病院のコインパーキングをご利用ください。</li>
-        <li>アレルギーをお持ちの方は、フォームにてお知らせください。</li>
-        <li>当日は受付でお名前をお伝えください。</li>
+        <li>当日はカジュアルな服装でお越しください。</li>
+        <li>駐車場あり。</li>
+        <li>お車でお越しの方はお酒の提供を控えさせていただきます。</li>
       </ul>
     </div>
   </section>
@@ -497,92 +491,51 @@
   <!-- RSVP -->
   <section id="rsvp" class="rsvp-section reveal">
     <div class="container">
-      <h2 class="section-title">出欠のご連絡</h2>
-
-      <form id="rsvpForm" class="rsvp-form" novalidate>
-        <!-- ★★★ ここをあなたのGASのURLに差し替えてください ★★★ -->
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbwKkHHF1-RIOV_3QpFrDto4Q8mlhG_HQQs4ygCpx5Q3hkBiX2jRpNhnuU9u5AORwwHC/exec" />
-
+      <h2 class="section-title">出欠連絡</h2>
+      <form id="rsvp-form" class="rsvp-form">
         <div class="form-group">
-          <label for="name">お名前 <span style="color:#d93025;">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="例）山田 太郎" />
+          <label for="name">お名前 *</label>
+          <input type="text" id="name" name="name" required />
         </div>
-
         <div class="form-group">
-          <label for="email">メールアドレス <span style="color:#d93025;">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+          <label for="email">メールアドレス *</label>
+          <input type="email" id="email" name="email" required />
         </div>
-
         <div class="form-group">
-          <label for="tel">電話番号</label>
-          <input type="tel" id="tel" name="tel" placeholder="090-1234-5678" />
-        </div>
-
-        <div class="form-group">
-          <label for="attendance">ご出席について <span style="color:#d93025;">*</span></label>
+          <label for="attendance">ご出欠 *</label>
           <select id="attendance" name="attendance" required>
             <option value="">選択してください</option>
             <option value="出席">出席</option>
             <option value="欠席">欠席</option>
           </select>
         </div>
-
-        <div class="form-group">
-          <label for="guests">同伴者の人数（いない場合は0）</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" value="0" />
-        </div>
-
-        <div class="form-group">
-          <label for="allergy">アレルギー</label>
-          <textarea id="allergy" name="allergy" placeholder="例）甲殻類NG / 乳製品NG など"></textarea>
-        </div>
-
         <div class="form-group">
           <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
+          <textarea id="message" name="message"></textarea>
         </div>
-
-        <button type="submit" class="btn" id="submitBtn">送信する</button>
-        <div class="status" id="status"></div>
+        <button type="submit" class="btn">送信</button>
+        <div id="form-status" class="status"></div>
       </form>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      © 2025 Taro & Hanako — Wedding Invitation
-    </div>
+    <p>&copy; 2025 Taichiro & Manami Wedding Invitation</p>
   </footer>
 
   <script>
-    /**
-     * 1) スクロール演出
-     */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    /**
-     * 2) 花びらアニメーション生成
-     */
-    function createPetals(count = 20) {
+    // --- 花びら生成 ---
+    function createPetals(count = 30) {
       const root = document.getElementById('petals-root');
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
       for (let i = 0; i < count; i++) {
         const p = document.createElement('div');
         p.className = 'petal';
-        const size = Math.random() * 12 + 8;
+        const size = Math.random() * 20 + 12;
         p.style.width = size + 'px';
-        p.style.height = size + 'px';
+        p.style.height = size * 0.8 + 'px';
         p.style.left = Math.random() * vw + 'px';
-        const duration = Math.random() * 10 + 10;
+        const duration = Math.random() * 8 + 12;
         const delay = Math.random() * -20;
         p.style.animationDuration = duration + 's';
         p.style.animationDelay = delay + 's';
@@ -590,69 +543,32 @@
         root.appendChild(p);
       }
     }
-    createPetals(30);
+    createPetals(35);
 
-    /**
-     * 3) RSVP (GAS連携)
-     *    - GAS側はPOSTでJSONを受け取り、CORS許可＆JSON応答を返すよう実装してください
-     *    - 例: ContentService.createTextOutput(JSON.stringify({status:"ok"})).setMimeType(ContentService.MimeType.JSON)
-     *         .setHeader("Access-Control-Allow-Origin", "*")
-     */
-    const form = document.getElementById('rsvpForm');
-    const statusEl = document.getElementById('status');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      statusEl.textContent = '';
-      statusEl.className = 'status';
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
-
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        tel: form.tel.value.trim(),
-        attendance: form.attendance.value,
-        guests: form.guests.value,
-        allergy: form.allergy.value.trim(),
-        message: form.message.value.trim(),
-        timestamp: new Date().toISOString()
-      };
-
-      const endpoint = document.getElementById('GAS_ENDPOINT').value;
-
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          mode: 'cors',
-        });
-
-        // GASがJSON返す前提
-        const json = await res.json().catch(() => ({}));
-
-        if (res.ok) {
-          statusEl.textContent = json.message || '送信しました。ご回答ありがとうございます。';
-          statusEl.classList.add('success');
-          form.reset();
-        } else {
-          throw new Error(json.message || '送信に失敗しました。お手数ですが再度お試しください。');
+    // --- スクロール時のふわっと表示 ---
+    function onScrollReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      for (const el of reveals) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
         }
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = '送信に失敗しました。通信環境をご確認のうえ、時間をおいて再度お試しください。';
-        statusEl.classList.add('error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
       }
+    }
+    window.addEventListener('scroll', onScrollReveal);
+    onScrollReveal();
+
+    // --- RSVPフォーム送信（ダミー処理） ---
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.textContent = '送信中...';
+      status.className = 'status';
+      setTimeout(() => {
+        status.textContent = '送信が完了しました。ありがとうございます！';
+        status.classList.add('success');
+        this.reset();
+      }, 1000);
     });
   </script>
 </body>
