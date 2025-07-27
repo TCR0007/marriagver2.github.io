@@ -438,139 +438,109 @@
   <!-- RSVP -->
   <section id="rsvp" class="rsvp-section reveal">
     <div class="container">
-      <h2 class="section-title">出欠のご連絡</h2>
-
-      <form id="rsvpForm" class="rsvp-form" novalidate>
-        <!-- ★★★ あなたのGASのデプロイURLに必ず差し替えてください ★★★ -->
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbyfzQplPF5mho87EEdSZFaNBtAIlampgQOyIU5dkrbmSjVAJU_9drEV6FcSQkv5pBMo/exec" />
-
+      <h2 class="section-title">出欠連絡</h2>
+      <form id="rsvpForm" class="rsvp-form">
         <div class="form-group">
-          <label for="name">お名前 <span style="color:#d93025;">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="例）山田 太郎" />
+          <label for="name">お名前</label>
+          <input type="text" name="name" id="name" required>
         </div>
-
         <div class="form-group">
-          <label for="email">メールアドレス <span style="color:#d93025;">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@mail.com" />
+          <label for="email">メールアドレス</label>
+          <input type="email" name="email" id="email" required>
         </div>
-
         <div class="form-group">
-          <label for="attendance">ご出席について <span style="color:#d93025;">*</span></label>
-          <select id="attendance" name="attendance" required>
+          <label for="attendance">ご出欠</label>
+          <select name="attendance" id="attendance" required>
             <option value="">選択してください</option>
             <option value="出席">出席</option>
             <option value="欠席">欠席</option>
           </select>
         </div>
-
         <div class="form-group">
-          <label for="guests">同伴者の人数（いない場合は0）</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" value="0" />
+          <label for="guests">同伴者人数</label>
+          <input type="number" name="guests" id="guests" min="0" value="0">
         </div>
-
         <div class="form-group">
           <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
+          <textarea name="message" id="message"></textarea>
         </div>
-
-        <button type="submit" class="btn" id="submitBtn">送信する</button>
-        <div class="status" id="formStatus"></div>
+        <button type="submit" class="btn">送信する</button>
+        <div id="status" class="status"></div>
       </form>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 TAICHIRO & MANAMI Wedding</p>
+    &copy; 2025 Taichiro & Manami
   </footer>
 
   <script>
-    /**
-     * 1) スクロール演出（reveal）
-     */
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbygOK7reTeM_RP9fAZJ7dPIXw4g6CgX7JqY_cpw9UUFEXCuCs3G_f_7VuQt6xWUEXtw/exec";
 
-    /**
-     * 2) 花びらアニメーション（ランダムカラー＆角度）
-     */
-    const petalRoot = document.getElementById('petals-root');
-    const colors = ['#f7cfe0', '#fddde6', '#f9d6e0', '#fbe6f1', '#ffeaf4'];
-
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-
-      const size = Math.random() * 14 + 10;
-      petal.style.width = `${size}px`;
-      petal.style.height = `${size * 0.6}px`;
-      petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
-      petal.style.transform = `rotate(${Math.random() * 360}deg)`;
-      petal.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-      petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-      petal.style.animationDelay = Math.random() * 3 + 's';
-
-      petalRoot.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
-    }
-    setInterval(createPetal, 300);
-
-    /**
-     * 3) RSVP送信（GASへPOST）
-     */
-    const rsvpForm = document.getElementById('rsvpForm');
-    const formStatus = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-    const GAS_URL = document.getElementById('GAS_ENDPOINT').value;
-
-    rsvpForm.addEventListener('submit', async (e) => {
+    // RSVP form submission
+    document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      formStatus.textContent = '';
-      formStatus.className = 'status';
-      if (!rsvpForm.checkValidity()) {
-        rsvpForm.reportValidity();
-        return;
-      }
+      const statusEl = document.getElementById('status');
+      statusEl.textContent = "送信中...";
+      statusEl.className = "status";
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
-
-      const data = Object.fromEntries(new FormData(rsvpForm).entries());
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        attendance: document.getElementById('attendance').value,
+        guests: document.getElementById('guests').value,
+        message: document.getElementById('message').value
+      };
 
       try {
-        const res = await fetch(GAS_URL, {
+        const res = await fetch(GAS_ENDPOINT, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(formData)
         });
+        const result = await res.json();
 
-        const isOk = res.ok;
-        let json = {};
-        try { json = await res.json(); } catch(_) {}
-
-        if (isOk) {
-          formStatus.textContent = json.message || '送信が完了しました。ありがとうございます！';
-          formStatus.classList.add('success');
-          rsvpForm.reset();
+        if (result.status === 'ok') {
+          statusEl.textContent = "送信が完了しました。ありがとうございました！";
+          statusEl.classList.add("success");
+          document.getElementById('rsvpForm').reset();
         } else {
-          throw new Error(json.message || '送信に失敗しました。');
+          throw new Error(result.message || "エラーが発生しました");
         }
       } catch (err) {
-        console.error(err);
-        formStatus.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
-        formStatus.classList.add('error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = '送信する';
+        statusEl.textContent = "送信に失敗しました: " + err.message;
+        statusEl.classList.add("error");
       }
     });
+
+    // Floating petals
+    function createPetals() {
+      const root = document.getElementById('petals-root');
+      const colors = ['#f9d5e5', '#fbcce7', '#fde2f3', '#f8e1e7'];
+      for (let i = 0; i < 15; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.width = p.style.height = (10 + Math.random() * 12) + 'px';
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (6 + Math.random() * 4) + 's';
+        p.style.setProperty('--x-move', (Math.random() * 50 - 25) + 'px');
+        root.appendChild(p);
+      }
+    }
+    createPetals();
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const reveal = () => {
+      const winH = window.innerHeight;
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < winH - 100) el.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
   </script>
 </body>
 </html>
