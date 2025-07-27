@@ -69,75 +69,60 @@
       margin: 10px auto 0;
     }
 
-    /* Floating petals animation */
-    .petal {
-      position: fixed;
-      top: -10vh;
-      width: 20px;
-      height: 20px;
-      pointer-events: none;
-      background: rgba(255, 192, 203, 0.8);
-      border-radius: 100% 0 100% 100%;
-      transform: rotate(45deg);
-      animation: fall linear infinite;
-      z-index: 0;
-    }
-    @keyframes fall {
-      0% {
-        transform: translate3d(0, -10vh, 0) rotate(0deg);
-        opacity: 0;
-      }
-      15% { opacity: 1; }
-      100% {
-        transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(720deg);
-        opacity: 0;
-      }
-    }
+    /* .petal {
+  position: fixed;
+  top: -10vh;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #fff1f7 0%, #ffc0cb 60%, #ffdde2 100%);
+  border-radius: 50% 50% 50% 50%;
+  opacity: 0;
+  animation: fall 15s linear infinite, sway 6s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate3d(var(--x-move, 0px), 110vh, 0) rotate(360deg); opacity: 0; }
+}
+@keyframes sway {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(40px); }
+}
 
-    /* Decorations (SVG flowers) */
-    .flower {
-      position: absolute;
-      opacity: 0.15;
-      z-index: 0;
-    }
-    .flower--tl { top: -120px; left: -80px; transform: rotate(-15deg); }
-    .flower--br { bottom: -120px; right: -60px; transform: rotate(15deg); }
+/* Heroのテキスト登場アニメーション */
+.hero-content {
+  animation: fadeScale 1.8s ease forwards;
+}
+@keyframes fadeScale {
+  0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
 
-    /* Hero */
-    header.hero {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      background: url('https://images.unsplash.com/photo-1529634893989-1f3db6c5e5ce?auto=format&fit=crop&w=1600&q=80') center / cover no-repeat;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute; inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 1.5rem;
-      animation: fadeUp 1.2s ease 0.2s both;
-    }
-    .hero .date {
-      font-size: 1.2rem;
-      letter-spacing: 0.15em;
-      margin-top: 1rem;
-      opacity: 0.9;
-    }
-    .hero .place {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
+/* セクションタイトルのゴールドラインアニメ */
+.section-title {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background: linear-gradient(90deg, #d4af37 0%, #fff3a0 50%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
 
+/* revealアニメーションをより柔らかく */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
     /* Navigation */
     nav {
       position: fixed;
@@ -410,23 +395,23 @@
       <div class="timeline">
         <div class="timeline-item">
           <h3>受付開始</h3>
-          <time>15:00</time>
+          <time>13:00</time>
           <p>会場ロビーにて受付を行います。</p>
         </div>
         <div class="timeline-item">
-          <h3>挙式</h3>
-          <time>16:00</time>
-          <p>チャペルにて執り行います。</p>
+          <h3>Party</h3>
+          <time>13:30</time>
+          <p>レストランにて行います。</p>
         </div>
         <div class="timeline-item">
-          <h3>披露宴</h3>
+          <h3></h3>
           <time>17:30</time>
           <p>会場にてゲストの皆さまと楽しい時間を過ごします。</p>
         </div>
         <div class="timeline-item">
           <h3>おひらき</h3>
-          <time>20:00</time>
-          <p>お見送り後、二次会のご案内がある場合は別途記載。</p>
+          <time>16:00</time>
+          <p>お見送り</p>
         </div>
       </div>
     </div>
@@ -447,7 +432,7 @@
         <div class="profile">
           <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="bride">
           <div>
-            <h3>印藤　愛実</h3>
+            <h3>INDO MANAMI</h3>
             <p>1998年5月26日<br>千葉県生まれ。
               <br>埼玉県と千葉県を行ったり来たりして現在埼玉に在住。
               <br>好きな食べ物：オランダ屋の落花生パイ
@@ -497,7 +482,7 @@
 
       <form id="rsvpForm" class="rsvp-form" novalidate>
         <!-- ★★★ ここをあなたのGASのURLに差し替えてください ★★★ -->
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbxlIpeRjmgYfTi3VMzG46BPX1PP_BTmo6df3zHKlw5mKGJFL4svrLRRWYZX2uSeNQ/exec" />
+        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbxQBwxmdbSaJ0w3kEFrWDFAlqpKuJ6YHHpHqVWR7ECiJnqW2INOVrA0P1lDM9cf7PnZ/exec" />
 
         <div class="form-group">
           <label for="name">お名前 <span style="color:#d93025;">*</span></label>
@@ -568,25 +553,25 @@
     /**
      * 2) 花びらアニメーション生成
      */
-    function createPetals(count = 20) {
-      const root = document.getElementById('petals-root');
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'petal';
-        const size = Math.random() * 12 + 8;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.left = Math.random() * vw + 'px';
-        const duration = Math.random() * 10 + 10;
-        const delay = Math.random() * -20;
-        p.style.animationDuration = duration + 's';
-        p.style.animationDelay = delay + 's';
-        p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
-        root.appendChild(p);
-      }
-    }
-    createPetals(30);
+    function createPetals(count = 40) {
+  const root = document.getElementById('petals-root');
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = Math.random() * 15 + 10;  // サイズ大きめ
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.left = Math.random() * vw + 'px';
+    const duration = Math.random() * 10 + 12;
+    const delay = Math.random() * -20;
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    p.style.setProperty('--x-move', (Math.random() * 200 - 100) + 'px');
+    root.appendChild(p);
+  }
+}
+createPetals(50);
 
     /**
      * 3) RSVP (GAS連携)
