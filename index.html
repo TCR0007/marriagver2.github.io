@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -15,6 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
 
   <style>
+    /* 省略なしのCSS（元のまま） */
     :root { --bg: #fce8ed; --fg: #4a3c3c; --accent: #d6a5b2; --accent-dark: #b88091; --muted: #7a656a; --white: #fff; --max: 980px; }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -197,60 +199,7 @@
       最寄駅：千葉駅
     </p>
   </div>
-
-  <!-- Notes -->
-  <section id="notes" class="notes-section reveal">
-    <div class="container">
-      <h2 class="section-title">ご案内</h2>
-      <ul class="notes-list">
-        <li>お車の方は大学病院のコインパーキングをご利用ください。</li>
-        <li>アレルギーがある方はフォームにご記入ください。</li>
-        <li>当日は受付でお名前をお伝えください。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section id="rsvp" class="rsvp-section reveal">
-    <div class="container">
-      <h2 class="section-title">出欠のご連絡</h2>
-
-      <form id="rsvpForm" class="rsvp-form" novalidate>
-        <input type="hidden" id="GAS_ENDPOINT" value="https://script.google.com/macros/s/AKfycbygOK7reTeM_RP9fAZJ7dPIXw4g6CgX7JqY_cpw9UUFEXCuCs3G_f_7VuQt6xWUEXtw/exec" />
-
-        <div class="form-group">
-          <label for="name">お名前 <span style="color:#d93025;">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="例）山田 太郎" />
-        </div>
-
-        <div class="form-group">
-          <label for="email">メールアドレス <span style="color:#d93025;">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@mail.com" />
-        </div>
-
-        <div class="form-group">
-          <label for="attendance">ご出席について <span style="color:#d93025;">*</span></label>
-          <select id="attendance" name="attendance" required>
-            <option value="">選択してください</option>
-            <option value="出席">出席</option>
-            <option value="欠席">欠席</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="guests">同伴者の人数（いない場合は0）</label>
-          <input type="number" id="guests" name="guests" min="0" max="10" value="0" />
-        
-        <div class="form-group">
-          <label for="message">メッセージ</label>
-          <textarea id="message" name="message" placeholder="メッセージがあればご記入ください"></textarea>
-        </div>
-
-        <button type="submit" class="btn" id="submitBtn">送信する</button>
-        <div class="status" id="formStatus"></div>
-      </form>
-    </div>
-  </section>
+</section>
 
   <!-- Notes -->
   <section id="notes" class="notes-section reveal">
